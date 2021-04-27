@@ -11,14 +11,12 @@ class ResourceView extends StatefulWidget {
 }
 
 class ResourceViewState extends State<ResourceView> {
-  List<Appointment> _shiftCollection;
-  List<CalendarResource> _employeeCollection;
-  _DataSource _events;
+  List<Appointment> _shiftCollection = <Appointment>[];
+  List<CalendarResource> _employeeCollection = <CalendarResource>[];
+  late _DataSource _events;
 
   @override
   void initState() {
-    _shiftCollection = <Appointment>[];
-    _employeeCollection = <CalendarResource>[];
     _addResources();
     _addAppointments();
     _events = _DataSource(_shiftCollection, _employeeCollection);
@@ -38,7 +36,6 @@ class ResourceViewState extends State<ResourceView> {
               CalendarView.timelineDay,
               CalendarView.timelineWeek,
               CalendarView.timelineWorkWeek,
-              CalendarView.timelineWorkWeek
             ],
             showDatePickerButton: true,
             resourceViewSettings: ResourceViewSettings(
@@ -114,11 +111,11 @@ class ResourceViewState extends State<ResourceView> {
 
     final Random random = Random();
     for (int i = 0; i < _employeeCollection.length; i++) {
-      final List<String> _employeeIds = <String>[_employeeCollection[i].id];
+      final List<String> _employeeIds = <String>[_employeeCollection[i].id.toString()];
       if (i == _employeeCollection.length - 1) {
         int index = random.nextInt(5);
         index = index == i ? index + 1 : index;
-        _employeeIds.add(_employeeCollection[index].id);
+        _employeeIds.add(_employeeCollection[index].id.toString());
       }
 
       for (int k = 0; k < 365; k++) {
