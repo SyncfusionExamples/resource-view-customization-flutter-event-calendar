@@ -13,7 +13,7 @@ class ResourceView extends StatefulWidget {
 class ResourceViewState extends State<ResourceView> {
   List<Appointment> _shiftCollection = <Appointment>[];
   List<CalendarResource> _employeeCollection = <CalendarResource>[];
-  late _DataSource _events;
+  _DataSource? _events;
 
   @override
   void initState() {
